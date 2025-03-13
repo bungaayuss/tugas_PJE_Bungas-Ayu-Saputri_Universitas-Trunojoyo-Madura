@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menghitung Luas Bangun Datar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Menghitung Luas Bangun Datar</h1>
+    <div class="wrapper">
+        <div class="left-section">
+            <script>
+                // Deklarasi variabel untuk panjang, lebar, sisi, alas, dan tinggi
+                let panjang = 10;
+                let lebar = 5;
+                let sisi = 7;
+                let alas = 8;
+                let tinggi = 6;
+
+                // Rumus Menghitung luas dengan operator
+                let luasPersegiPanjang = panjang * lebar; // Rumus: panjang × lebar
+                let luasBujurSangkar = sisi * sisi; // Rumus: sisi × sisi
+                let luasSegitiga = 0.5 * alas * tinggi; // Rumus: ½ × alas × tinggi
+
+                // Menampilkan hasil perhitungan
+                // Hasil perhitungan luas persegi panjang
+                document.write(
+                    "<div class='box'><h3>Luas Persegi Panjang</h3><p>Rumus: Panjang × Lebar</p><p>Panjang: " + panjang + 
+                        ", Lebar: " + lebar + 
+                        "</p><p>Luas: " + luasPersegiPanjang + " cm²</p></div>"
+                    );
+                // Hasil perhitungan luas segitiga
+                document.write(
+                    "<div class='box'><h3>Luas Segitiga</h3><p>Rumus: ½ × Alas × Tinggi</p><p>Alas: " + alas + 
+                        ", Tinggi: " + tinggi + 
+                        "</p><p>Luas: " + luasSegitiga + " cm²</p></div>"
+                    );
+                // Hasil perhitungan luas bujur sangkar
+                document.write(
+                    "<div class='box'><h3>Luas Bujur Sangkar</h3><p>Rumus: Sisi × Sisi</p><p>Sisi: " + sisi + 
+                        "</p><p>Luas: " + luasBujurSangkar + 
+                            " cm²</p></div>"
+                    );
+            </script>
+        </div>
+        <div class="right-section">
+            <img src="gambar1.jpg" alt="Gambar Bangun Datar">
+        </div>
+    </div>
+</body>
+</html>
