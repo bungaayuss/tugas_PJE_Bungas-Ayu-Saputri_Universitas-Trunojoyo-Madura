@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Pesanan Toko</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .text-container {
+            width: 50%;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 30px;
+        }
+        .image-container img {
+            width: 500px;
+            height: 500px;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #86c9ff;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            display: block;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #86a9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <p class="text-container">
+            <strong>Welcome to Our Store Management System</strong><br><br>
+            Di sini Anda dapat mengelola produk toko dengan menambahkan, melihat, dan menghapus daftar produk.
+            <button onclick="pindahHalaman()">Lihat Toko</button>
+        </p>
+        <div class="image-container">
+            <img src="gambar1.avif" alt="Produk Gambar">
+        </div>
+    </div>
+    
+    <script>
+        function pindahHalaman() {
+            window.location.href = "manajemen.html";
+        }
+    </script>
+</body>
+</html>
