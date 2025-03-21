@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Transportasi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h2>Sistem Manajemen Transportasi</h2>
+            <label for="nama">Nama Pelanggan:</label>
+            <input type="text" id="nama">
+            
+            <label for="telepon">Nomor Telepon:</label>
+            <input type="text" id="telepon">
+            
+            <label for="kendaraan">Kendaraan yang Disewa:</label>
+            <select id="kendaraan">
+                <option value="Mobil">Mobil</option>
+                <option value="Motor">Motor</option>
+                <option value="Bus">Bus</option>
+                <option value="Truk">Truk</option>
+            </select>
+            
+            <button onclick="tambahPelanggan()">Tambah Pelanggan</button>
+            
+            <h3>Daftar Pelanggan yang Sedang Menyewa</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Nomor Telepon</th>
+                        <th>Kendaraan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="daftarPelanggan"></tbody>
+            </table>
+        </div>
+        <div class="image-container">
+            <img src="gambar 1.jpg" alt="Produk Gambar">
+        </div>
+    </div>
+
+    <script>
+        class Pelanggan {
+            constructor(nama, nomorTelepon, kendaraanDisewa) {
+                this.nama = nama;
+                this.nomorTelepon = nomorTelepon;
+                this.kendaraanDisewa = kendaraanDisewa;
+            }
+        }
+
+        class ManajemenPelanggan {
+            constructor() {
+                this.pelangganList = [];
+            }
+
+            tambahPelanggan(nama, nomorTelepon, kendaraanDisewa) {
+                const pelanggan = new Pelanggan(nama, nomorTelepon, kendaraanDisewa);
+                this.pelangganList.push(pelanggan);
+                this.tampilkanPelanggan();
+            }
+
+            hapusPelanggan(index) {
+                this.pelangganList.splice(index, 1);
+                this.tampilkanPelanggan();
+            }
+
+            tampilkanPelanggan() {
+                const daftarPelanggan = document.getElementById("daftarPelanggan");
+                daftarPelanggan.innerHTML = "";
+                this.pelangganList.forEach((pelanggan, index) => {
+                    const row = `<tr>
+                        <td>${pelanggan.nama}</td>
+                        <td>${pelanggan.nomorTelepon}</td>
+                        <td>${pelanggan.kendaraanDisewa}</td>
+                        <td><button class='btn-hapus' onclick='manajemenPelanggan.hapusPelanggan(${index})'>Hapus</button></td>
+                    </tr>`;
+                    daftarPelanggan.innerHTML += row;
+                });
+            }
+        }
+
+        const manajemenPelanggan = new ManajemenPelanggan();
+
+        function tambahPelanggan() {
+            const nama = document.getElementById("nama").value;
+            const telepon = document.getElementById("telepon").value;
+            const kendaraan = document.getElementById("kendaraan").value;
+
+            if (nama && telepon && kendaraan) {
+                manajemenPelanggan.tambahPelanggan(nama, telepon, kendaraan);
+                document.getElementById("nama").value = "";
+                document.getElementById("telepon").value = "";
+            } else {
+                alert("Harap isi semua kolom!");
+            }
+        }
+    </script>
+</body>
+</html>
