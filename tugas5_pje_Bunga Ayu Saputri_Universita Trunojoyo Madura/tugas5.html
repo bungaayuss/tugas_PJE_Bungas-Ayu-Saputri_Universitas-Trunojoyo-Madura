@@ -60,14 +60,13 @@
             });
         }
 
-        function tambahProduk(...produkBaru) {
-            produklist = [...produklist, ...produkBaru.map((produk, index) => ({
-                id: produklist.length + index + 1,
-                ...produk
-            }))];
+        // **Menambahkan Produk menggunakan Spread Operator**
+        function tambahProduk(id, nama, harga) {
+            produklist = [...produklist, { id, nama, harga }];
             renderProdukList();
         }
 
+        // **Hapus Produk menggunakan Rest Parameter**
         function hapusProduk(...ids) {
             produklist = produklist.filter(produk => !ids.includes(produk.id));
             renderProdukList();
@@ -85,7 +84,7 @@
                 return;
             }
 
-            tambahProduk({ id, nama, harga });
+            tambahProduk(id, nama, harga);
             event.target.reset();
         }
 
@@ -93,10 +92,7 @@
             document.getElementById("formTambah").addEventListener('submit', handleSubmitForm);
             renderProdukList();
 
-            const produkTambahan = [
-                { nama: 'MacBook', harga: 12000000 }
-            ];
-            tambahProduk(...produkTambahan);
+            tambahProduk(produklist.length + 1, "MacBook", 12000000);
         });
     </script>
 </body>
