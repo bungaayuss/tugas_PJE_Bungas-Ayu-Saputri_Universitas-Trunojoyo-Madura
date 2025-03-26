@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pengguna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Daftar Pengguna</h1>
+    <div class="form-container">
+        <h2>Tambah Pengguna</h2>
+        <input type="text" id="nama" placeholder="Nama" required>
+        <input type="number" id="umur" placeholder="Umur" required>
+        <input type="text" id="alamat" placeholder="Alamat" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button onclick="tambahPengguna()">Tambah</button>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Umur</th>
+                <th>Alamat</th>
+                <th>Email</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="userTable"></tbody>
+    </table>
+
+    <script type="module">
+        import { index, store, destroy } from "./controller.mjs";
+        function tampilkanData() {
+            const tableBody = document.getElementById("userTable");
+            tableBody.innerHTML = "";
+            const users = index();
+            users.forEach((user, i) => {
+                let row = `<tr>
+                    <td>${i + 1}</td>  <!-- Nomor urut -->
+                    <td>${user.nama}</td>
+                    <td>${user.umur}</td>
+                    <td>${user.alamat}</td>
+                    <td>${user.email}</td>
+                    <td><button class="delete-btn" onclick="hapusPengguna(${i})">Hapus</button></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    
+        function tambahPengguna() {
+            const nama = document.getElementById("nama").value;
+            const umur = document.getElementById("umur").value;
+            const alamat = document.getElementById("alamat").value;
+            const email = document.getElementById("email").value;
+    
+            if (nama && umur && alamat && email) {
+                store({ nama, umur: parseInt(umur), alamat, email });
+                tampilkanData();
+                document.getElementById("nama").value = "";
+                document.getElementById("umur").value = "";
+                document.getElementById("alamat").value = "";
+                document.getElementById("email").value = "";
+            } else {
+                alert("Harap isi semua bidang!");
+            }
+        }
+    
+        function hapusPengguna(index) {
+            destroy(index);
+            tampilkanData();
+        }
+    
+        window.tambahPengguna = tambahPengguna;
+        window.hapusPengguna = hapusPengguna;
+    
+        tampilkanData();
+    </script>
+</body>
+</html>
